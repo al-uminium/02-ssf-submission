@@ -6,14 +6,20 @@
   <title>Movie Booking</title>
 </head>
 <body>
-  <form action="" th:action="@{/login}" method="post">
+  <form action="#" th:object="${login}" th:action="@{/}" method="post">
     <div>
-      Email Address: <input type="text" name="email" id="email">
+      Email Address: <input type="text" name="email" id="email" th:field="*{email}">
+      <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+        Email Error
+      </span>
     </div>
     <div>
-      Birth Date: <input type="date" name="birthdate" id="birthdate">
+      Birth Date: <input type="date" name="birthdate" id="birthdate" th:field="*{birthdate}">
+      <span th:if="${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}">
+        Birth date error
+      </span>
     </div>
-    <input type="submit" value="Login">
+    <input type="submit" value="Submit">
   </form>
 </body>
 </html>

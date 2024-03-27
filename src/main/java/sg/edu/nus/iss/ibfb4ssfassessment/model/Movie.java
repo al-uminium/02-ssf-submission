@@ -13,7 +13,7 @@ public class Movie {
   private String director;
   private Double rating; 
   private Date formattedReleaseDate;
-  private Integer count=0;
+  private Integer count;
   
   public Integer getMovieId() {
     return movieId;
@@ -78,8 +78,8 @@ public class Movie {
   public Integer getCount() {
     return count;
   }
-  public void setCount() {
-    this.count++;
+  public void setCount(Integer count) {
+    this.count = count;
   }
 
   @Override
