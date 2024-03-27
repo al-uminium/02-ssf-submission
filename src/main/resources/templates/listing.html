@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div>
+    <div>List of Movies</div>
+    <form action="#" th:action="@{/logout}" method="post">
+      <input type="submit" value="Logout">
+    </form>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Movie ID</th>
+        <th>Movie Title</th>
+        <th>Movie Year</th>
+        <th>Rated</th>
+        <th>Released On</th>
+        <th>Runtime</th>
+        <th>Genre</th>
+        <th>Director</th>
+        <th>Rating</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="movie : ${movies}">
+        <td th:text="${movie.movieId}"></td>
+        <td th:text="${movie.title}"></td>
+        <td th:text="${movie.year}"></td>
+        <td th:text="${movie.rated}"></td>
+        <td th:text="${#dates.format(movie.formattedReleaseDate, 'dd-MMMM-yyyy')}"></td>
+        <td th:text="${movie.runTime}"></td>
+        <td th:text="${movie.genre}"></td>
+        <td th:text="${movie.director}"></td>
+        <td th:text="${movie.rating}"></td>
+        <td>
+          <form action="#" method="post" th:action="@{/book(movie=${movie.movieId})}">
+            <input type="submit" value="Book">
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

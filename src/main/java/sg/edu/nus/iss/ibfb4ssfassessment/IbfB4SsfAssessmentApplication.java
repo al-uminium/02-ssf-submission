@@ -29,10 +29,6 @@ public class IbfB4SsfAssessmentApplication implements CommandLineRunner {
 			
 		}
 		System.out.println(dbSvc.getNumberOfMovies());
-
-		System.out.println("Sanity Check");
-		System.out.println(dbSvc.getAllMovies());
-		System.out.println(dbSvc.getMovieById(12334));
 	}
 
 }

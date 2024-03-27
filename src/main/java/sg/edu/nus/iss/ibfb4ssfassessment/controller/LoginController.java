@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import sg.edu.nus.iss.ibfb4ssfassessment.model.Login;
 
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,13 +24,15 @@ public class LoginController {
 
     
     // TODO: Task 7
-    @PostMapping
+    @PostMapping(path = "/")
     public String processlogin(@Valid Login login, BindingResult bindingResult, HttpSession sess) {
       if (bindingResult.hasErrors()) {
         return "login";
       } 
 
       sess.setAttribute("login", login);
+      sess.setAttribute("isLoggedIn", true);
+      System.out.println(sess.getAttribute("login").toString());
       return "success";
     
     }
@@ -39,8 +40,10 @@ public class LoginController {
 
     // For the logout button shown on View 2
     // On logout, session should be cleared
-    // public String logout() {
-
-    // }
+    @PostMapping(path = "/logout")
+    public String logout(HttpSession sess) {
+      sess.invalidate();
+      return "logout";
+    }
     
 }
